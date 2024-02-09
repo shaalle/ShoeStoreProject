@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">ShoeStore</string>
+    <string name="app_name">Shoe Store</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txtEmpty">There is no data in the list</string>
+    <string name="txt_shoe_size">Shoe size: %.1f</string>
 </resources>

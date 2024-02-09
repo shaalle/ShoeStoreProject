@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<data>
+    <variable
+        name="shoe"
+        type="com.udacity.shoestore.models.Shoe" />
+</data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/txtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Shoe Name"
+        android:text="@{shoe.name}"
+        android:textSize="20sp"
+        android:textColor="@color/purple_700"/>
+
+    <ImageView
+        android:id="@+id/img_shoe"
+        android:layout_height="100dp"
+        android:layout_width="130dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtName"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/shoe_image2"/>
+
+    <TextView
+        android:id="@+id/txtSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintStart_toEndOf="@id/img_shoe"
+        app:layout_constraintTop_toBottomOf="@id/txtName"
+        tools:text="Size: 33"
+        android:textSize="14sp"
+        android:text="@{@string/txt_shoe_size(shoe.size)}"/>
+    <TextView
+        android:id="@+id/txtCompany"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintStart_toEndOf="@id/img_shoe"
+        app:layout_constraintTop_toBottomOf="@id/txtSize"
+        tools:text="Company: XYZ"
+        android:textSize="14sp"
+        android:text="@{shoe.company}"/>
+    <TextView
+        android:id="@+id/txtDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintStart_toEndOf="@id/img_shoe"
+        app:layout_constraintTop_toBottomOf="@id/txtCompany"
+        tools:text="Description: Hehe"
+        android:textSize="14sp"
+        android:text="@{shoe.description}"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

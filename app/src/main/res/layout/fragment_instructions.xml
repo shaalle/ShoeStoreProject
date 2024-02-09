@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/txt1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Discover the Perfect Pair"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/txt2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Explore our diverse collection of shoes designed for every style and occasion. Head to the shoe list screen now to find the perfect pair that suits you best!"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnNext"
+        style="@style/ButtonStyles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:padding="12dp"
+        android:gravity="center"/>
+
+</LinearLayout>
+</layout>
