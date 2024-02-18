@@ -14,6 +14,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentShoeDetailBinding
+import com.udacity.shoestore.models.Shoe
 import com.udacity.shoestore.viewmodels.ShoeDetailViewModel
 import com.udacity.shoestore.viewmodels.ShoesViewModel
 
@@ -29,7 +30,15 @@ class ShoeDetailFragment : Fragment() {
         val binding: FragmentShoeDetailBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_shoe_detail,container,false)
 
+        // Get shoe from arguments
+        val shoe = arguments?.getParcelable<Shoe>("shoe")
         detailViewModel = ViewModelProvider(this)[ShoeDetailViewModel::class.java]
+
+        // Initialize view model data from shoe
+        if (shoe != null) {
+            detailViewModel.initializeData(shoe)
+        }
+
         binding.viewModel = detailViewModel
         binding.lifecycleOwner = this
 
@@ -38,15 +47,12 @@ class ShoeDetailFragment : Fragment() {
         }
 
         binding.btnSave.setOnClickListener {
-            if (!detailViewModel.validateFields()){
-                val shoe = detailViewModel.saveShoe()
-                Log.d("shoe_name", shoe.toString())
-                shoesViewModel.addShoe(shoe)
+            // On save
+            if(detailViewModel.validateFields()) {
+                val updatedShoe = detailViewModel.saveShoe()
+                Log.d("shoe_name", updatedShoe.toString())
+                shoesViewModel.addShoe(updatedShoe)
                 Toast.makeText(context, binding.editName.text.toString(), Toast.LENGTH_SHORT).show()
-                Log.d("name", detailViewModel.shoeName.value.toString())
-                Log.d("size", detailViewModel.shoeSize.value.toString())
-                Log.d("company", detailViewModel.shoeCompany.value.toString())
-                Log.d("Desc", detailViewModel.shoeDescription.value.toString())
                 findNavController().navigate(ShoeDetailFragmentDirections.actionShoeDetailFragmentToShoeListFragment())
             }else{
                 Toast.makeText(context, "Please fill all these fields", Toast.LENGTH_SHORT).show()

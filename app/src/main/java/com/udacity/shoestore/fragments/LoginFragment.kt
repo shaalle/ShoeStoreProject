@@ -28,7 +28,7 @@ class LoginFragment : Fragment() {
         )
 
         binding.btnLogIn.setOnClickListener {
-            if(binding.txtEmail.text.equals("") || binding.txtPass.equals("")){
+            if(binding.txtEmail.text.isEmpty() || binding.txtPass.text.isEmpty()){
                 Toast.makeText(requireContext(), "Email/Password can't be empty", Toast.LENGTH_SHORT).show()
             }else{
                 Toast.makeText(requireContext(), "You Logged Successfully", Toast.LENGTH_SHORT).show()
@@ -37,10 +37,11 @@ class LoginFragment : Fragment() {
         }
 
         binding.btnSignUp.setOnClickListener {
-            if(binding.txtEmail.text.equals("") || binding.txtPass.equals("")){
+            if(binding.txtEmail.text.isEmpty() || binding.txtPass.text.isEmpty()){
                 Toast.makeText(requireContext(), "Email/Password can't be empty", Toast.LENGTH_SHORT).show()
             }else{
                 Toast.makeText(requireContext(), "You SignedUp Successfully", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
             }
 
 

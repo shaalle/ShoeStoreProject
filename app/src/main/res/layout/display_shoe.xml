@@ -21,7 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="Shoe Name"
-        android:text="@{shoe.name}"
+        android:text="@{@string/txt_shoe_name(shoe.name)}"
         android:textSize="20sp"
         android:textColor="@color/purple_700"/>
 
@@ -55,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@id/txtSize"
         tools:text="Company: XYZ"
         android:textSize="14sp"
-        android:text="@{shoe.company}"/>
+        android:text="@{@string/txt_company(shoe.company)}"/>
     <TextView
         android:id="@+id/txtDesc"
         android:layout_width="wrap_content"
@@ -65,6 +65,6 @@
         app:layout_constraintTop_toBottomOf="@id/txtCompany"
         tools:text="Description: Hehe"
         android:textSize="14sp"
-        android:text="@{shoe.description}"/>
+        android:text="@{@string/txt_description(shoe.description)}"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

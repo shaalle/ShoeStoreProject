@@ -4,4 +4,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="txtEmpty">There is no data in the list</string>
     <string name="txt_shoe_size">Shoe size: %.1f</string>
+    <string name="txt_shoe_name">Shoe Name: %s</string>
+    <string name="txt_company">Company: %s</string>
+    <string name="txt_description">Description: %s</string>
 </resources>
