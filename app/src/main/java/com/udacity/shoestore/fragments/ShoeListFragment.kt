@@ -2,6 +2,8 @@ package com.udacity.shoestore.fragments
 
 import android.os.Bundle
 import android.view.*
+import androidx.activity.addCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -23,6 +25,8 @@ class ShoeListFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_shoe_list,
@@ -47,7 +51,11 @@ class ShoeListFragment: Fragment() {
         return binding.root
 
     }
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            // do nothing
+        }
+    }
     fun addNewShoe(container: ViewGroup?, shoe: Shoe) {
         val shoeBinding: DisplayShoeBinding = DataBindingUtil.inflate(
             layoutInflater, R.layout.display_shoe, container, false)
@@ -63,4 +71,5 @@ class ShoeListFragment: Fragment() {
         findNavController().navigate(ShoeListFragmentDirections.actionShoeListFragmentToLoginFragment())
         return true
     }
+
 }

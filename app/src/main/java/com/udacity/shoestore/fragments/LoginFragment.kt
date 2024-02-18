@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentLoginBinding
+import java.util.Objects
 
 
 class LoginFragment : Fragment() {
@@ -27,24 +29,28 @@ class LoginFragment : Fragment() {
             false
         )
 
+
         binding.btnLogIn.setOnClickListener {
-            if(binding.txtEmail.text.isEmpty() || binding.txtPass.text.isEmpty()){
-                Toast.makeText(requireContext(), "Email/Password can't be empty", Toast.LENGTH_SHORT).show()
+            if(binding.editTxtEmail.text.isEmpty() || binding.editTxtPass.text.isEmpty()){
+                val snackbar = Snackbar.make(it, "Email/Password can't be empty", Snackbar.LENGTH_SHORT)
+                snackbar.show()
             }else{
-                Toast.makeText(requireContext(), "You Logged Successfully", Toast.LENGTH_SHORT).show()
+                val snackbar = Snackbar.make(it, "You Logged Successfully", Snackbar.LENGTH_SHORT)
+                snackbar.show()
                 findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
             }
         }
 
+
         binding.btnSignUp.setOnClickListener {
-            if(binding.txtEmail.text.isEmpty() || binding.txtPass.text.isEmpty()){
-                Toast.makeText(requireContext(), "Email/Password can't be empty", Toast.LENGTH_SHORT).show()
+            if(binding.editTxtEmail.text.isEmpty() || binding.editTxtPass.text.isEmpty()){
+                val snackbar = Snackbar.make(it, "Email/Password can't be empty", Snackbar.LENGTH_SHORT)
+                snackbar.show()
             }else{
-                Toast.makeText(requireContext(), "You SignedUp Successfully", Toast.LENGTH_SHORT).show()
+                val snackbar = Snackbar.make(it, "You SignedUp Successfully", Snackbar.LENGTH_SHORT)
+                snackbar.show()
                 findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
             }
-
-
         }
         return binding.root
     }
