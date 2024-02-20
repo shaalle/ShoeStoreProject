@@ -2,7 +2,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <!--I have chosen this layout constraint because it makes done a lot of things easier
+    specially placing these views without needing two many layouts-->
 <data>
     <variable
         name="shoe"

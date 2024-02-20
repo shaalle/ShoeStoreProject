@@ -20,45 +20,48 @@ import com.udacity.shoestore.viewmodels.ShoesViewModel
 
 class ShoeDetailFragment : Fragment() {
     private val shoesViewModel: ShoesViewModel by activityViewModels()
-    private lateinit var detailViewModel: ShoeDetailViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentShoeDetailBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_shoe_detail,container,false)
+
+        val binding = FragmentShoeDetailBinding.inflate(inflater,container, false)
 
         // Get shoe from arguments
         val shoe = arguments?.getParcelable<Shoe>("shoe")
-        detailViewModel = ViewModelProvider(this)[ShoeDetailViewModel::class.java]
+        val detailViewModel = ViewModelProvider(this)[ShoeDetailViewModel::class.java]
 
         // Initialize view model data from shoe
         if (shoe != null) {
             detailViewModel.initializeData(shoe)
         }
 
-        binding.viewModel = detailViewModel
-        binding.lifecycleOwner = this
+        return with(binding){
+            viewModel = detailViewModel
 
-        binding.btnCancel.setOnClickListener {
-            findNavController().navigate(ShoeDetailFragmentDirections.actionShoeDetailFragmentToShoeListFragment())
-        }
-
-        binding.btnSave.setOnClickListener {
-            // On save
-            if(detailViewModel.validateFields()) {
-                val updatedShoe = detailViewModel.saveShoe()
-                Log.d("shoe_name", updatedShoe.toString())
-                shoesViewModel.addShoe(updatedShoe)
-                Toast.makeText(context, binding.editName.text.toString(), Toast.LENGTH_SHORT).show()
-                findNavController().navigate(ShoeDetailFragmentDirections.actionShoeDetailFragmentToShoeListFragment())
-            }else{
-                Toast.makeText(context, "Please fill all these fields", Toast.LENGTH_SHORT).show()
+            btnCancel.setOnClickListener {
+                findNavController().navigateUp()
             }
+
+            btnSave.setOnClickListener {
+                if (detailViewModel.validateFields()){
+                    val updatedShoe = detailViewModel.saveShoe()
+                    shoesViewModel.addShoe( updatedShoe)
+                    findNavController().navigateUp()
+                }else{
+                    showError(binding)
+                }
+            }
+            root
         }
 
-        return binding.root
     }
+
+    private fun showError(binding: FragmentShoeDetailBinding) = with(binding) {
+        Toast.makeText(context, "Please fill all these fields", Toast.LENGTH_SHORT).show()
+    }
+
+
 }
